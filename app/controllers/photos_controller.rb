@@ -13,10 +13,10 @@ class PhotosController < ApplicationController
 
   def create_row
 
-    p = Photo.new
-    p.caption = params[:the_caption]
-    p.source = params[:the_source]
-    p.save
+    @photo = Photo.new
+    @photo.caption = params[:the_caption]
+    @photo.source = params[:the_source]
+    @photo.save
 
     redirect_to("http://localhost:3000")
 
@@ -24,9 +24,9 @@ class PhotosController < ApplicationController
 
   def destroy
 
-    p= Photo.find_by({:id => params[:id]})
+    @photo= Photo.find_by({:id => params[:id]})
 
-    p.destroy
+    @photo.destroy
 
     redirect_to("http://localhost:3000")
 
@@ -40,14 +40,13 @@ class PhotosController < ApplicationController
 
   def update_row
 
-    p = Photo.find_by({:id => params[:id]})
-    p.caption = params[:the_caption]
-    p.source = params[:the_source]
-    p.save
+    @photo = Photo.find_by({:id => params[:id]})
+    @photo.caption = params[:the_caption]
+    @photo.source = params[:the_source]
+    @photo.save
 
-    redirect_to("http://localhost:3000")
+    render("show")
 
   end
-
 
 end
